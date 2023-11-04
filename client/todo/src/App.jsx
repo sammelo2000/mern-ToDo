@@ -6,6 +6,11 @@ const API_BASE= 'http://localhost:4001/todo';
 function App() {
 
   const [items, setItems] = useState([]);
+  const [input,setInput] = useState("");
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  }
 
  
  useEffect(() => {
@@ -17,7 +22,21 @@ function App() {
   fetch(API_BASE)
   .then(res => res.json())
   .then(data => setItems(data))
-  .catch(err => console.log(err))
+  .catch(err => console.log(err));
+ }
+
+ const addItem = async() => {
+  const data = await fetch(API_BASE + "/new",{
+    method: "POST",
+    headers: {
+      "content-type" : "application/json"
+    },
+    body: JSON.stringify({
+      name: input,
+    })
+  }).then(res => res.json());
+  await GetTodos();
+  setInput("");
  }
 
   return (
@@ -27,8 +46,8 @@ function App() {
       </div>
 
       <div className="form">
-        <input type='text'></input>
-        <button>
+        <input type='text' value={input} onChange={handleChange}></input>
+        <button onClick={()=> addItem()}>
           <span>ADD</span>
         </button>
       </div>
