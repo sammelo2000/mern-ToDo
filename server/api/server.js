@@ -14,7 +14,7 @@ const port = 4001;
 
 
 //Find a way to make the env fil work, cause this is not good prcatice.
-const connectionString = 'mongodb+srv://samuelspexy:DnmfT4pew4gQI9LA@cluster0.lytp59w.mongodb.net/Mern_Todo'; 
+const connectionString = 'mongodb+srv://sammelo2000:VhQ5nzyWf6KDSIn2@merncluster.cjudt6u.mongodb.net/MernTodo'; 
 mongoose.connect(connectionString)
         .then(() => console.log('Connected to the database…')) 
         .catch((err) => console.error('Connection error:', err));
